@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CONECTAQR: sua identidade digital conectada ao WhatsApp por QR Code.">
+  <title>CONECTAQR — Painel</title><link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+<header class="topbar"><a class="brand" href="/"><span class="brand-icon">⌗</span> CONECTA<span>QR</span></a><nav><a href="#recursos">Recursos</a><a href="#planos">Planos</a><button id="logoutBtn" class="btn btn-ghost hidden">Sair</button></nav></header>
+<main class="container">
+  <section class="hero"><div><span class="eyebrow">IDENTIDADE DIGITAL INTELIGENTE</span><h1>Do QR Code ao cliente.<br><span>Simples assim.</span></h1><p>Crie sua presença digital, conecte clientes ao WhatsApp e acompanhe os acessos em um só lugar.</p><div class="hero-actions"><button class="btn btn-primary" id="heroStart">Começar gratuitamente</button><a class="btn btn-light" href="#recursos">Conhecer recursos</a></div></div><div class="hero-art"><div class="phone"><div class="phone-top"></div><div class="avatar">CQ</div><h3>Seu negócio</h3><p>Conectado em um toque</p><div class="mock-button">● WhatsApp</div><div class="mock-button">▦ Meu catálogo</div><div class="mock-qr">▦</div></div></div></section>
+  <section id="auth" class="auth-section">
+    <div class="auth-card"><div class="tabs"><button class="tab active" data-tab="login">Entrar</button><button class="tab" data-tab="register">Criar conta</button></div>
+      <form id="loginForm"><h2>Acesse sua conta</h2><label>E-mail<input name="email" type="email" required placeholder="voce@email.com"></label><label>Senha<input name="password" type="password" required minlength="8" placeholder="Sua senha"></label><button class="btn btn-primary full">Entrar no painel</button></form>
+      <form id="registerForm" class="hidden"><h2>Crie sua conta grátis</h2><label>Nome<input name="name" required minlength="2" placeholder="Seu nome"></label><label>E-mail<input name="email" type="email" required placeholder="voce@email.com"></label><label>Senha<input name="password" type="password" required minlength="8" placeholder="Mínimo de 8 caracteres"></label><button class="btn btn-primary full">Criar minha conta</button></form>
+      <p id="authMessage" class="message" role="status"></p>
+    </div>
+  </section>
+  <section id="dashboard" class="dashboard hidden">
+    <div class="section-heading"><div><span class="eyebrow">ÁREA DO CLIENTE</span><h2>Olá, <span id="userName">!</span></h2><p>Gerencie sua presença digital.</p></div><span class="plan-pill" id="planName">Plano gratuito</span></div>
+    <div class="stats-grid"><article class="stat-card"><span>QR Codes</span><strong id="statQrs">0</strong></article><article class="stat-card"><span>Leituras totais</span><strong id="statScans">0</strong></article><article class="stat-card"><span>Leituras em 30 dias</span><strong id="statRecent">0</strong></article></div>
+    <div class="dashboard-grid">
+      <section class="panel"><div class="panel-title"><h3>Meu perfil digital</h3><span class="status-dot">● Público</span></div><form id="profileForm" class="form-grid"><label>Nome de exibição<input name="display_name" required></label><label>Profissão / empresa<input name="profession"></label><label class="span-2">Apresentação<textarea name="bio" rows="3"></textarea></label><label>WhatsApp (DDI + DDD + número)<input name="whatsapp" placeholder="5584999999999"></label><label>E-mail público<input name="email_public" type="email"></label><label>Site<input name="website" placeholder="https://..."></label><label>Instagram (URL)<input name="instagram" placeholder="https://instagram.com/..."></label><button class="btn btn-primary span-2">Salvar perfil</button></form><p id="profileMessage" class="message"></p><a id="publicProfileLink" class="text-link" target="_blank" rel="noopener">Visualizar meu perfil público ↗</a></section>
+      <section class="panel"><div class="panel-title"><h3>Criar QR Code</h3></div><form id="qrForm"><label>Nome do QR Code<input name="title" required placeholder="Ex.: Cartão de visita"></label><label>Destino<select name="destination_type"><option value="profile">Meu perfil digital</option><option value="whatsapp">WhatsApp direto</option><option value="url">Outro endereço (URL)</option></select></label><label id="destinationLabel" class="hidden">Destino<input name="destination_value" placeholder="Número ou URL"></label><button class="btn btn-primary full">＋ Gerar QR Code</button></form><p id="qrMessage" class="message"></p><div class="qr-help">O código dinâmico pode manter o mesmo endereço enquanto você altera o destino.</div></section>
+    </div>
+    <section class="panel"><div class="panel-title"><h3>Meus QR Codes</h3><button class="btn btn-light btn-small" id="refreshBtn">Atualizar</button></div><div id="qrList" class="qr-list"><p class="muted">Carregando...</p></div></section>
+  </section>
+  <section id="recursos" class="features"><div class="section-heading centered"><span class="eyebrow">UMA PLATAFORMA, MUITAS POSSIBILIDADES</span><h2>Tudo conectado em um só lugar</h2></div><div class="feature-grid"><article><b>▦</b><h3>QR Code dinâmico</h3><p>Atualize o destino sem precisar imprimir outro código.</p></article><article><b>◉</b><h3>Perfil digital</h3><p>Apresente seu negócio com links e informações profissionais.</p></article><article><b>☏</b><h3>WhatsApp</h3><p>Facilite o contato com mensagens e links personalizados.</p></article><article><b>↗</b><h3>Estatísticas</h3><p>Acompanhe leituras e descubra quais códigos geram interesse.</p></article></div></section>
+  <section id="planos" class="pricing"><div class="section-heading centered"><span class="eyebrow">PLANOS</span><h2>Comece grátis. Evolua quando quiser.</h2></div><div class="pricing-grid"><article><h3>Free</h3><strong>R$ 0<small>/mês</small></strong><p>1 QR Code dinâmico</p><p>Perfil digital básico</p><p>Link WhatsApp</p></article><article class="featured"><span class="eyebrow">MAIS POPULAR</span><h3>Profissional</h3><strong>R$ 19,90<small>/mês</small></strong><p>3 QR Codes dinâmicos</p><p>Perfil personalizado</p><p>Estatísticas básicas</p></article><article><h3>Business</h3><strong>R$ 39,90<small>/mês</small></strong><p>10 QR Codes dinâmicos</p><p>Catálogo e múltiplos perfis</p><p>Estatísticas avançadas</p></article></div><p class="muted center">Planos pagos demonstrativos nesta versão. A cobrança online será habilitada após configurar o gateway.</p></section>
+</main>
+<footer><a class="brand" href="/">CONECTA<span>QR</span></a><p>© 2026 CONECTAQR. Tecnologia que aproxima.</p></footer>
+<script src="/assets/app.js"></script>
+</body></html>

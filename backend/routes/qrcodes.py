@@ -33,7 +33,7 @@ def list_qrs(user: User = Depends(get_current_user), db: Session = Depends(get_d
     rows = db.query(QRCode).filter(QRCode.user_id == user.id).order_by(QRCode.id.desc()).all()
     return [{"id": q.id, "code": q.code, "title": q.title, "destination_type": q.destination_type,
              "destination_value": q.destination_value, "is_active": q.is_active,
-             "url": f"{settings.base_url}/q/{q.code}"} for q in rows]
+             "url": f"{settings.base_url.strip()}/q/{q.code}"} for q in rows]
 
 @router.post("/api/qrcodes", status_code=201)
 def create_qr(data: QRCreateIn, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
@@ -50,7 +50,7 @@ def create_qr(data: QRCreateIn, user: User = Depends(get_current_user), db: Sess
     db.add(qr)
     db.commit()
     db.refresh(qr)
-    return {"id": qr.id, "code": qr.code, "title": qr.title, "url": f"{settings.base_url}/q/{qr.code}"}
+    return {"id": qr.id, "code": qr.code, "title": qr.title, "url": f"{settings.base_url.strip()}/q/{qr.code}"}
 
 @router.patch("/api/qrcodes/{qr_id}")
 def update_qr(qr_id: int, data: QRUpdateIn, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
@@ -75,7 +75,7 @@ def delete_qr(qr_id: int, user: User = Depends(get_current_user), db: Session = 
 @router.get("/api/qrcodes/{qr_id}/image")
 def qr_image(qr_id: int, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
     qr = owned_qr(db, qr_id, user.id)
-    img = qrcode.make(f"{settings.base_url}/q/{qr.code}")
+    img = qrcode.make(f"{settings.base_url.strip()}/q/{qr.code}")
     output = io.BytesIO()
     img.save(output, format="PNG")
     output.seek(0)
@@ -97,4 +97,4 @@ def redirect_qr(code: str, request: Request, db: Session = Depends(get_db)):
     profile = db.query(Profile).filter(Profile.user_id == qr.user_id).first()
     if not profile or not profile.is_published:
         raise HTTPException(404, "Perfil público indisponível")
-    return RedirectResponse(f"{settings.base_url}/p/{profile.slug}", status_code=302)
+    return RedirectResponse(f"{settings.base_url.strip()}/p/{profile.slug}", status_code=302)
